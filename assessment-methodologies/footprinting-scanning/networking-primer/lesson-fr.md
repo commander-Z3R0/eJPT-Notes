@@ -6,12 +6,12 @@ Le modèle OSI (Open Systems Interconnection) est un cadre conceptuel qui décri
 
 | Couche | Nom            | PDU       | Fonction principale                                      | Exemples de protocoles/dispositifs        |
 |--------|----------------|-----------|----------------------------------------------------------|-------------------------------------------|
-| 7      | Application    | Données   | Services面向 utilisateur, applications réseau             | HTTP, FTP, DNS, SMTP                      |
+| 7      | Application    | Données   | Services utilisateur, applications réseau                | HTTP, FTP, DNS, SMTP                      |
 | 6      | Présentation   | Données   | Mise en forme, chiffrement, compression des données      | SSL/TLS, JPEG, ASCII                      |
 | 5      | Session        | Données   | Gère les sessions entre applications                     | NetBIOS, RPC                              |
 | 4      | Transport      | Segment   | Communication de bout en bout, fiabilité, contrôle       | TCP, UDP                                  |
 | 3      | Réseau         | Paquet    | Routage, adressage logique (IP)                          | IP, ICMP, routeurs                        |
-| 2      | Liaison de données| Trame   | Adressage MAC, détection d'erreurs, commutateurs         | Ethernet, commutateurs, MAC               |
+| 2      | Liaison de données| Trame   | Adressage MAC, détection d'erreurs, commutateurs        | Ethernet, commutateurs, MAC               |
 | 1      | Physique       | Bits      | Transmission physique (câbles, signaux)                  | Câbles, hubs, cartes réseau, radio        |
 
 Les données descendent les couches chez l'expéditeur (7 → 1) et remontent chez le récepteur (1 → 7).
