@@ -1,4 +1,4 @@
-# Reconocimient
+# Reconocimiento
 
 ## Reconocimiento Activo
 
