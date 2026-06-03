@@ -188,6 +188,21 @@ nmap -sX 192.168.1.5
 
 ---
 
+## Plantillas de Tiempo de Nmap (`-T`)
+
+Las plantillas de tiempo de Nmap controlan la **velocidad y agresividad** del escaneo. Valores más altos son más rápidos pero más propensos a ser detectados.
+
+| Opción | Nombre | Descripción | Caso de Uso |
+|--------|--------|-------------|-------------|
+| `-T0` | **Paranoid** | Extremadamente lento; enfocado en evasión | Evasión de IDS, muy sigiloso |
+| `-T1` | **Sneaky** | Muy lento; evita detección | Escaneo sigiloso |
+| `-T2` | **Polite** | Lento; reduce uso de ancho de banda | Redes con bajo ancho de banda |
+| `-T3` | **Normal** | Velocidad por defecto | Escaneo estándar |
+| `-T4` | **Aggressive** | Rápido; asume red moderna | Escaneos rápidos en redes confiables |
+| `-T5` | **Insane** | Muy rápido; alto riesgo de errores | Velocidad sobre precisión |
+
+---
+
 ## Selección de Puertos
 
 Puedes especificar qué puertos escanear usando `-p` :
