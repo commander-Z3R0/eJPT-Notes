@@ -2,7 +2,7 @@
 
 ## 1. Modèle OSI (7 Couches)
 
-Le modèle OSI (Open Systems Interconnection) est un cadre conceptuel qui décrit comment les données circulent dans un réseau. Il comporte **7 couches** [web:21][web:24]:
+Le modèle OSI (Open Systems Interconnection) est un cadre conceptuel qui décrit comment les données circulent dans un réseau. Il comporte **7 couches**:
 
 | Couche | Nom            | PDU       | Fonction principale                                      | Exemples de protocoles/dispositifs        |
 |--------|----------------|-----------|----------------------------------------------------------|-------------------------------------------|
@@ -62,7 +62,7 @@ La charge utile contient généralement un **segment de la couche transport** (T
 
 ## 4. En-tête IPv4 en détail
 
-Un datagramme IPv4 possède un **en-tête de longueur variable** (minimum 20 octets, jusqu'à 60 octets avec options) [web:22][web:25][web:28].
+Un datagramme IPv4 possède un **en-tête de longueur variable** (minimum 20 octets, jusqu'à 60 octets avec options).
 
 ### Champs de l'en-tête IPv4
 
@@ -100,7 +100,7 @@ Le champ **Protocole** indique au récepteur ce qu'il y a dans la charge utile:
 
 ## 5. TCP 3-Way Handshake (Poignée de main à 3 voies)
 
-TCP est **orienté connexion**. Avant le transfert de données, une connexion fiable est établie via un **handshake à 3 voies** [web:23][web:26][web:29]:
+TCP est **orienté connexion**. Avant le transfert de données, une connexion fiable est établie via un **handshake à 3 voies**:
 
 ### Étapes
 
@@ -138,7 +138,7 @@ Client                      Serveur
 
 ## 6. Ports TCP et Plages
 
-TCP utilise des **numéros de port sur 16 bits** (0–65535) pour identifier les applications/services [web:23][web:29].
+TCP utilise des **numéros de port sur 16 bits** (0–65535) pour identifier les applications/services.
 
 ### Plages de ports
 
