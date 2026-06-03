@@ -1,4 +1,4 @@
-# Networking Primer (Bases du Réseau)
+# Networking Primer
 
 ## 1. Modèle OSI (7 Couches)
 
