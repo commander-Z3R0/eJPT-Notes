@@ -2,7 +2,7 @@
 
 A personal collection of notes, commands, and concepts gathered while preparing for the eLearnSecurity Junior Penetration Tester (eJPT) certification.
 
-These notes are written in **Spanish, English, and French**.
+These notes are written in **English, Spanish and French**.
 
 ## Contents
 - Networking basics
