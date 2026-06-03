@@ -20,14 +20,6 @@
     │       ├── lesson-es.md
     │       └── lesson-fr.md
     └── footprinting-scanning/
-        ├── course-introduction/
-        │   ├── lesson-en.md
-        │   ├── lesson-es.md
-        │   └── lesson-fr.md
-        ├── introduction/
-        │   ├── lesson-en.md
-        │   ├── lesson-es.md
-        │   └── lesson-fr.md
         ├── networking-primer/
         │   ├── lesson-en.md
         │   ├── lesson-es.md
