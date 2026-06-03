@@ -188,6 +188,21 @@ nmap -sX 192.168.1.5
 
 ---
 
+## Nmap Timing Templates (`-T`)
+
+Nmap timing templates control the **speed and aggressiveness** of the scan. Higher values are faster but more likely to be detected.
+
+| Option | Name | Description | Use Case |
+|--------|------|-------------|----------|
+| `-T0` | **Paranoid** | Extremely slow; evasion-focused | IDS evasion, very stealthy |
+| `-T1` | **Sneaky** | Very slow; avoids detection | Stealth scanning |
+| `-T2` | **Polite** | Slow; reduces bandwidth usage | Low bandwidth networks |
+| `-T3` | **Normal** | Default speed | Standard scanning |
+| `-T4` | **Aggressive** | Fast; assumes modern network | Fast scans on reliable networks |
+| `-T5` | **Insane** | Very fast; high risk of errors | Speed over accuracy |
+
+---
+
 ## Port Selection
 
 You can specify which ports to scan using `-p` :
