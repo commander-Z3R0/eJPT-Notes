@@ -1,3 +1,5 @@
+# Reconnaissance
+
 ## Active Reconnaissance
 
 Active information gathering means interacting with the target system, which requires authorization.
