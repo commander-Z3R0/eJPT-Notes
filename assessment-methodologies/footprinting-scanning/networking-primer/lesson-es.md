@@ -1,8 +1,8 @@
-# Networking Primer (Bases de Redes)
+# Networking Primer
 
 ## 1. Modelo OSI (7 Capas)
 
-El modelo OSI (Open Systems Interconnection) es un marco conceptual que describe cómo viajan los datos por una red. Tiene **7 capas** [web:21][web:24]:
+El modelo OSI (Open Systems Interconnection) es un marco conceptual que describe cómo viajan los datos por una red. Tiene **7 capas**:
 
 | Capa | Nombre         | UDI       | Función principal                                      | Ejemplos de protocolos/dispositivos     |
 |------|----------------|-----------|--------------------------------------------------------|-----------------------------------------|
@@ -62,7 +62,7 @@ El payload normalmente contiene un **segmento de la capa de transporte** (TCP o 
 
 ## 4. Cabecera IPv4 en detalle
 
-Un datagrama IPv4 tiene una **cabecera de longitud variable** (mínimo 20 bytes, hasta 60 bytes con opciones) [web:22][web:25][web:28].
+Un datagrama IPv4 tiene una **cabecera de longitud variable** (mínimo 20 bytes, hasta 60 bytes con opciones).
 
 ### Campos de la cabecera IPv4
 
@@ -100,7 +100,7 @@ El campo **Protocolo** indica al receptor qué hay dentro del payload:
 
 ## 5. TCP 3-Way Handshake (Triálogo de 3 Vías)
 
-TCP es **orientado a conexión**. Antes de transferir datos, se establece una conexión fiable mediante un **handshake de 3 vías** [web:23][web:26][web:29]:
+TCP es **orientado a conexión**. Antes de transferir datos, se establece una conexión fiable mediante un **handshake de 3 vías** :
 
 ### Pasos
 
@@ -138,7 +138,7 @@ Cliente                      Servidor
 
 ## 6. Puertos TCP y Rangos
 
-TCP usa **números de puerto de 16 bits** (0–65535) para identificar aplicaciones/servicios [web:23][web:29].
+TCP usa **números de puerto de 16 bits** (0–65535) para identificar aplicaciones/servicios.
 
 ### Rangos de puertos
 
