@@ -1,3 +1,4 @@
+```sh
 /
 ├── README.md
 ├── welcome/
@@ -65,3 +66,5 @@
     ├── lesson-en.md
     ├── lesson-es.md
     └── lesson-fr.md
+
+```
