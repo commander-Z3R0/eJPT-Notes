@@ -6,7 +6,7 @@ El modelo OSI (Open Systems Interconnection) es un marco conceptual que describe
 
 | Capa | Nombre         | UDI       | Función principal                                      | Ejemplos de protocolos/dispositivos     |
 |------|----------------|-----------|--------------------------------------------------------|-----------------------------------------|
-| 7    | Aplicación     | Datos     | Servicios面向 usuario, aplicaciones de red             | HTTP, FTP, DNS, SMTP                    |
+| 7    | Aplicación     | Datos     | Servicios usuario, aplicaciones de red             | HTTP, FTP, DNS, SMTP                    |
 | 6    | Presentación   | Datos     | Formateo, cifrado, compresión de datos                 | SSL/TLS, JPEG, ASCII                    |
 | 5    | Sesión         | Datos     | Gestiona sesiones entre aplicaciones                   | NetBIOS, RPC                            |
 | 4    | Transporte     | Segmento  | Comunicación extremo a extremo, fiabilidad, control    | TCP, UDP                                |
