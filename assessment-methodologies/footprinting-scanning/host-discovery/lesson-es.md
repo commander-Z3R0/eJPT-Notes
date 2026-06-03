@@ -1,4 +1,4 @@
-# Host Discovery (Detección de Hosts)
+# Host Discovery
 
 Host discovery es el proceso de identificar qué hosts están **activos/en línea** en una red. En lugar de escanear todos los puertos de todas las IPs, primero encontramos las máquinas activas para enfocar nuestros esfuerzos.
 
