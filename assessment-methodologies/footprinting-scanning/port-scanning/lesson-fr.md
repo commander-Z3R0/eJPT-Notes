@@ -188,6 +188,21 @@ nmap -sX 192.168.1.5
 
 ---
 
+## Paramètres de Temps Nmap (`-T`)
+
+Les paramètres de temps de Nmap contrôlent la **vitesse et l'agressivité** du scan. Des valeurs plus élevées sont plus rapides mais plus susceptibles d'être détectées.
+
+| Option | Nom | Description | Cas d'Usage |
+|--------|-----|-------------|-------------|
+| `-T0` | **Paranoid** | Extrêmement lent; focalisé sur l'évasion | Évasion IDS, très furtif |
+| `-T1` | **Sneaky** | Très lent; évite la détection | Scan furtif |
+| `-T2` | **Polite** | Lent; réduit l'utilisation de bande passante | Réseaux à faible bande passante |
+| `-T3` | **Normal** | Vitesse par défaut | Scan standard |
+| `-T4` | **Aggressive** | Rapide; suppose réseau moderne | Scans rapides sur réseaux fiables |
+| `-T5` | **Insane** | Très rapide; risque élevé d'erreurs | Vitesse sur précision |
+
+---
+
 ## Sélection de Ports
 
 Vous pouvez spécifier quels ports scanner en utilisant `-p` :
