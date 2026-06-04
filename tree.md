@@ -19,20 +19,29 @@
     │       ├── lesson-en.md
     │       ├── lesson-es.md
     │       └── lesson-fr.md
-    └── footprinting-scanning/
-        ├── networking-primer/
+    ├── footprinting-scanning/
+    │   ├── networking-primer/
+    │   │   ├── lesson-en.md
+    │   │   ├── lesson-es.md
+    │   │   └── lesson-fr.md
+    │   ├── host-discovery/
+    │   │   ├── lesson-en.md
+    │   │   ├── lesson-es.md
+    │   │   └── lesson-fr.md
+    │   ├── port-scanning/
+    │   │   ├── lesson-en.md
+    │   │   ├── lesson-es.md
+    │   │   └── lesson-fr.md
+    │   └── evasion-scan-performance-output/
+    │       ├── lesson-en.md
+    │       ├── lesson-es.md
+    │       └── lesson-fr.md
+    └── enumeration/
+        ├── nmap-scripting-engine-nse/
         │   ├── lesson-en.md
         │   ├── lesson-es.md
         │   └── lesson-fr.md
-        ├── host-discovery/
-        │   ├── lesson-en.md
-        │   ├── lesson-es.md
-        │   └── lesson-fr.md
-        ├── port-scanning/
-        │   ├── lesson-en.md
-        │   ├── lesson-es.md
-        │   └── lesson-fr.md
-        └── evasion-scan-performance-output/
+        └── service-enumeration/
             ├── lesson-en.md
             ├── lesson-es.md
             └── lesson-fr.md
