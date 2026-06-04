@@ -1,6 +1,6 @@
 # Service Enumeration
 
-L'**énumération de services** est le processus d'identification et d'analyse des services réseau en cours d'exécution sur un système cible. En pentest, cette phase vient après le **footprinting et le scan**, et se concentre sur la collecte d'informations détaillées sur des services comme **FTP, SMB, Web (Apache), MySQL, SSH et SMTP** pour trouver des mauvaises configurations, des credentials faibles et des vulnérabilités potentielles.
+L'**énumération de services** est le processus d'identification et d'analyse des services réseau en cours d'exécution sur un système cible. En pentest, cette phase vient après le **footprinting et le scan**, et se concentre sur la collecte d'informations détaillées sur des services comme **FTP, SMB, Web, MySQL, SSH et SMTP** pour trouver des mauvaises configurations, des credentials faibles et des vulnérabilités potentielles.
 
 Cette leçon couvre l'**énumération de services utilisant les modules auxiliaires Metasploit**, y compris le scan de ports, la sélection de module, la configuration RHOST et les tests de credentials avec des wordlists, tout cela dans la **phase de reconnaissance/footprinting** (sans exploitation).
 
