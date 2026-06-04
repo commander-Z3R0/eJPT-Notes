@@ -296,7 +296,8 @@ nmap --script http-enum 192.168.1.5
 | **Escaneo UDP (top 100)** | `nmap -sU --top-ports 100 <objetivo>` |
 | **TCP + UDP completo** | `nmap -sS -sU -p- <objetivo>` |
 | **Sin root** | `nmap -sT -p 80,443 <objetivo>` |
-| **Mapeo de firewall** | `nmap -sA <objetivo>` |
+| **Mapping de firewall** | `nmap -sA <objetivo>` |
+| **Omitir descubrimiento de host (-Pn)** | `nmap -sS -Pn <objetivo>` |
 
 ---
 
