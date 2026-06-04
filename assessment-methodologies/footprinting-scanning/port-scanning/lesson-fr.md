@@ -297,6 +297,7 @@ nmap --script http-enum 192.168.1.5
 | **TCP + UDP complet** | `nmap -sS -sU -p- <cible>` |
 | **Sans root** | `nmap -sT -p 80,443 <cible>` |
 | **Mapping de pare-feu** | `nmap -sA <cible>` |
+| **Sauter découverte d'hôte (-Pn)** | `nmap -sS -Pn <cible>` |
 
 ---
 
