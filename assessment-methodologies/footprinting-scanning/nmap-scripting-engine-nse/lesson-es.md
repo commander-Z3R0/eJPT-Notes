@@ -339,5 +339,3 @@ Guarda tus resultados de escaneo, salida NSE y exportaciones de base de datos de
 - Lista hosts con **`hosts`**, servicios con **`services`**, y vulnerabilidades con **`vulns`**.
 - Usa **`db_nmap`** para ejecutar Nmap directamente desde Metasploit con almacenamiento automático en base de datos.
 - Los **módulos auxiliares de Metasploit** (`auxiliary/scanner/*`) realizan enumeración sin explotación.
-- Siempre permanece en la **fase de footprinting/reconocimiento** durante la enumeración (sin explotación).
-- Documenta todo: salida NSE, exportaciones de base de datos de Metasploit y notas para tu informe final.
