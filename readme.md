@@ -1,4 +1,4 @@
-# eJPT Notes
+# eJPT(V2) Notes
 
 A personal collection of notes, commands, and concepts gathered while preparing for the eLearnSecurity Junior Penetration Tester (eJPT) certification.
 
