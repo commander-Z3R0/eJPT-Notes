@@ -1,6 +1,6 @@
 # Service Enumeration
 
-**Service enumeration** is the process of identifying and analyzing network services running on a target system. In penetration testing, this phase comes after **footprinting and scanning**, and it focuses on gathering detailed information about services like **FTP, SMB, Web (Apache), MySQL, SSH, and SMTP** to find misconfigurations, weak credentials, and potential vulnerabilities.
+**Service enumeration** is the process of identifying and analyzing network services running on a target system. In penetration testing, this phase comes after **footprinting and scanning**, and it focuses on gathering detailed information about services like **FTP, SMB, Web, MySQL, SSH, and SMTP** to find misconfigurations, weak credentials, and potential vulnerabilities.
 
 This lesson covers **service enumeration using Metasploit auxiliary modules**, including port scanning, module selection, RHOST configuration, and credential testing with wordlists—all within the **reconnaissance/footprinting phase** (no exploitation).
 
