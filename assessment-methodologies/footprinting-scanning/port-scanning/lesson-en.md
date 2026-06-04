@@ -287,17 +287,17 @@ nmap --script http-enum 192.168.1.5
 
 ## Common Scan Combinations
 
-| Scenario | Command |
-|----------|---------|
-| **Quick top 100 ports** | `nmap -sS --top-ports 100 <target>` |
-| **Full TCP scan** | `nmap -sS -p- <target>` |
-| **Full scan + version + OS** | `nmap -sS -sV -O -p- <target>` |
-| **Aggressive scan** | `nmap -A <target>` |
-| **UDP scan (top 100)** | `nmap -sU --top-ports 100 <target>` |
-| **TCP + UDP full scan** | `nmap -sS -sU -p- <target>` |
-| **Without root** | `nmap -sT -p 80,443 <target>` |
-| **Firewall mapping** | `nmap -sA <target>` |
-
+| Scenario                  | Command                           |
+| ------------------------- | --------------------------------- |
+| Quick top 100 ports       | nmap -sS --top-ports 100 <target> |
+| Full TCP scan             | nmap -sS -p- <target>             |
+| Full scan + version + OS  | nmap -sS -sV -O -p- <target>      |
+| Aggressive scan           | nmap -A <target>                  |
+| UDP scan (top 100)        | nmap -sU --top-ports 100 <target> |
+| TCP + UDP full scan       | nmap -sS -sU -p- <target>         |
+| Without root              | nmap -sT -p 80,443 <target>       |
+| Firewall mapping          | nmap -sA <target>                 |
+| Skip host discovery (-Pn) | nmap -sS -Pn <target>             |
 ---
 
 ## Scan States
