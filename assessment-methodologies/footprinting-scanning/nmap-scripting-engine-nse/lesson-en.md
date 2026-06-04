@@ -338,6 +338,4 @@ Save your scan results, NSE output, and Metasploit database exports for your fin
 - Use **`db_import`** to load Nmap XML into the Metasploit database.
 - List hosts with **`hosts`**, services with **`services`**, and vulnerabilities with **`vulns`**.
 - Use **`db_nmap`** to run Nmap directly from Metasploit with automatic database storage.
-- Metasploit **auxiliary modules** (`auxiliary/scanner/*`) perform enumeration without exploitation [web:47][web:53].
-- Always stay in **footprinting/reconnaissance phase** during enumeration (no exploitation).
-- Document everything: NSE output, Metasploit database exports, and notes for your final report.
+- Metasploit **auxiliary modules** (`auxiliary/scanner/*`) perform enumeration without exploitation.
