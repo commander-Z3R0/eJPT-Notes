@@ -219,7 +219,7 @@ Example: A perimeter of 200.200.0.0/16 means the network could contain up to 65,
 
 This lesson covers how to detect firewalls and IDS/IPS systems during a scan, and the techniques Nmap provides to evade or bypass basic filtering — essential skills for network-based penetration testing.
 
-> ⚠️ **Note**: All commands assume you are operating from a **Kali Linux** attack machine. Replace target IPs with your actual values.
+> ⚠️ Note: All commands assume you are operating from a Kali Linux attack machine. Replace 10.10.10.10 with your actual target IP in every command.
 
 ---
 
@@ -251,7 +251,7 @@ Nmap reports three possible states for a port:
 
 ```bash
 # A filtered result strongly suggests a firewall is in place
-nmap -sS -p 80,443,22,3389 <target_ip>
+nmap -sS -p 80,443,22,3389 10.10.10.10
 ```
 
 If you see **`filtered`** on ports that should be open, a firewall is blocking the probes.
@@ -261,7 +261,7 @@ If you see **`filtered`** on ports that should be open, a firewall is blocking t
 The **ACK scan** is specifically designed to map firewall rules — it does not detect open ports, it detects **whether ports are filtered**.
 
 ```bash
-nmap -sA -p 80,443,22 <target_ip>
+nmap -sA -p 80,443,22 10.10.10.10
 ```
 
 How it works:
@@ -281,15 +281,15 @@ How it works:
 Similar to the ACK scan but analyzes the **TCP window size** in RST responses to differentiate open from closed ports through certain firewall types.
 
 ```bash
-nmap -sW -p 80,443 <target_ip>
+nmap -sW -p 80,443 10.10.10.10
 ```
 
 #### Method 4: Firewall vs No Firewall — Quick Test
 
 ```bash
 # Compare SYN scan vs ACK scan on the same ports
-nmap -sS -p 80 <target_ip>   # Port state from SYN scan
-nmap -sA -p 80 <target_ip>   # Filtered/unfiltered from ACK scan
+nmap -sS -p 80 10.10.10.10   # Port state from SYN scan
+nmap -sA -p 80 10.10.10.10   # Filtered/unfiltered from ACK scan
 ```
 
 If SYN shows **filtered** but ACK shows **unfiltered** → stateful firewall is dropping SYN packets but not ACK packets.
@@ -306,13 +306,13 @@ Once you've identified filtering, use these techniques to make scans harder to d
 
 ```bash
 # Fragment into 8-byte chunks (after IP header)
-nmap -sS -f <target_ip>
+nmap -sS -f 10.10.10.10
 
 # Fragment into 16-byte chunks (double -f)
-nmap -sS -ff <target_ip>
+nmap -sS -ff 10.10.10.10
 
 # Set custom fragment size (must be multiple of 8)
-nmap -sS --mtu 24 <target_ip>
+nmap -sS --mtu 24 10.10.10.10
 ```
 
 > Modern stateful firewalls and IDS/IPS systems **can** reassemble fragments — fragmentation is most effective against older or misconfigured systems.
@@ -323,10 +323,10 @@ nmap -sS --mtu 24 <target_ip>
 
 ```bash
 # Specify decoy IPs manually (ME = your real IP)
-nmap -sS -D 10.10.10.10,10.10.10.11,ME <target_ip>
+nmap -sS -D 10.10.10.10,10.10.10.11,ME 10.10.10.10
 
 # Use random decoys (RND generates random IPs)
-nmap -sS -D RND:5 <target_ip>
+nmap -sS -D RND:5 10.10.10.10
 ```
 
 > Decoys work best when the IDS is configured to block individual IPs based on scan volume. With decoys, the real IP is hidden among many fake ones.
@@ -337,11 +337,11 @@ Some firewalls allow traffic from **trusted source ports** (e.g., DNS port 53, H
 
 ```bash
 # Make scan traffic appear to come from port 53 (DNS)
-nmap -sS -g 53 <target_ip>
-nmap -sS --source-port 53 <target_ip>
+nmap -sS -g 53 10.10.10.10
+nmap -sS --source-port 53 10.10.10.10
 
 # Appear to come from port 80 (HTTP)
-nmap -sS -g 80 <target_ip>
+nmap -sS -g 80 10.10.10.10
 ```
 
 > This technique exploits **misconfigured firewalls** that trust traffic based on source port alone rather than full packet inspection.
@@ -351,7 +351,7 @@ nmap -sS -g 80 <target_ip>
 Appending random bytes to packets makes probes less consistent and harder for signature-based IDS systems to match against known scan patterns.
 
 ```bash
-nmap -sS --data-length 25 <target_ip>
+nmap -sS --data-length 25 10.10.10.10
 ```
 
 #### 5. Disable DNS Resolution (`-n`)
@@ -359,7 +359,7 @@ nmap -sS --data-length 25 <target_ip>
 By default, Nmap resolves hostnames — each DNS query is a potential detection point. Disabling DNS resolution makes scans faster and leaves fewer traces.
 
 ```bash
-nmap -sS -n <target_ip>
+nmap -sS -n 10.10.10.10
 ```
 
 #### 6. Spoof Source IP (`-S`)
@@ -367,7 +367,7 @@ nmap -sS -n <target_ip>
 Spoofing the source IP makes traffic appear to come from a different host. However, **replies go back to the spoofed IP**, so you won't receive them. Useful for testing IDS alert rules.
 
 ```bash
-nmap -sS -S 192.168.1.50 -e eth0 <target_ip>
+nmap -sS -S 192.168.1.50 -e eth0 10.10.10.10
 ```
 
 > `-e` specifies the network interface to send from. Without receiving replies, you cannot determine open ports — this is primarily for **IDS rule testing**.
@@ -378,13 +378,13 @@ Spoofs the source MAC address in Ethernet frames — useful on local networks wh
 
 ```bash
 # Spoof a random MAC address
-nmap -sS --spoof-mac 0 <target_ip>
+nmap -sS --spoof-mac 0 10.10.10.10
 
 # Spoof a specific vendor MAC (Apple in this case)
-nmap -sS --spoof-mac Apple <target_ip>
+nmap -sS --spoof-mac Apple 10.10.10.10
 
 # Spoof a specific MAC address
-nmap -sS --spoof-mac 00:11:22:33:44:55 <target_ip>
+nmap -sS --spoof-mac 00:11:22:33:44:55 10.10.10.10
 ```
 
 ---
@@ -406,26 +406,26 @@ IDS systems often detect scans based on the **volume and rate** of packets. Slow
 
 ```bash
 # Slow stealthy scan — evades many IDS rate thresholds
-nmap -sS -T1 <target_ip>
+nmap -sS -T1 10.10.10.10
 
 # Standard scan
-nmap -sS -T3 <target_ip>
+nmap -sS -T3 10.10.10.10
 
 # Fast scan for internal reliable networks
-nmap -sS -T4 <target_ip>
+nmap -sS -T4 10.10.10.10
 ```
 
 #### Manual Timing Controls
 
 ```bash
 # Add delay between probes to the same host
-nmap -sS --scan-delay 200ms <target_ip>
+nmap -sS --scan-delay 200ms 10.10.10.10
 
 # Set minimum packet rate (packets per second)
-nmap --min-rate 50 <target_ip>
+nmap --min-rate 50 10.10.10.10
 
 # Set maximum time per host before giving up
-nmap --host-timeout 5m <target_ip>
+nmap --host-timeout 5m 10.10.10.10
 ```
 
 ---
@@ -436,7 +436,7 @@ A practical evasion-focused scan combining multiple techniques:
 
 ```bash
 # Fragment + decoys + source port spoof + no DNS + slow timing
-nmap -sS -Pn -f -D RND:5 -g 53 -n -T2 --data-length 15 -oX evasion_scan.xml <target_ip>
+nmap -sS -Pn -f -D RND:5 -g 53 -n -T2 --data-length 15 -oX evasion_scan.xml 10.10.10.10
 ```
 
 Flag breakdown:
