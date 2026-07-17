@@ -1,6 +1,8 @@
 # Networking
 
-The purpose of networking is to exchange information between hosts. Packets are just bits (i.e. electrical signals), which when translated by a computer, make up information
+The purpose of networking is to exchange information between hosts. Packets are just bits (electrical signals) which, when translated by a computer, make up information.
+
+---
 
 ## Networking Fundamentals
 
@@ -8,141 +10,145 @@ This lesson covers the fundamental networking concepts needed for network-based 
 
 ### How Networks Communicate
 
-In a computer network, hosts communicate through network protocols — standardized rules that ensure different systems can exchange information. This communication is carried by packets.
+In a computer network, hosts communicate through **network protocols** — standardized rules that ensure different systems can exchange information. This communication is carried by **packets**.
 
 Each packet has two parts:
 
 | Part | Description |
-|---|---|
-| Header | Protocol-specific structure (TCP, UDP, IP) that tells the destination host how to interpret the data. Contains source/destination IPs, version, TTL, protocol type. |
-| Payload | The actual data or information being transmitted. |
+|------|-------------|
+| **Header** | Protocol-specific structure (TCP, UDP, IP) that tells the destination host how to interpret the data. Contains source/destination IPs, version, TTL, protocol type. |
+| **Payload** | The actual data or information being transmitted. |
+
+---
 
 ### The OSI Model
 
-The OSI model (Open Systems Interconnection) is a conceptual framework that standardizes network communication into 7 layers. It is not a strict blueprint, but it helps understand and design network architecture.
+The **OSI (Open Systems Interconnection)** model standardizes network communication into 7 layers. It is not a strict blueprint, but helps understand and design network architecture.
 
 | Layer | Name | Function | Key Protocols |
-|---|---|---|---|
-| 7 | Application | User-oriented services and interfaces | HTTP, FTP, SMTP, DNS |
-| 6 | Presentation | Data formatting, encryption, compression | SSL/TLS, JPEG |
-| 5 | Session | Manages sessions between applications | NetBIOS, RPC |
-| 4 | Transport | End-to-end communication, error control | TCP, UDP |
-| 3 | Network | Logical addressing and routing | IP, ICMP, DHCP |
-| 2 | Data Link | Physical addressing, frame delivery | Ethernet, MAC, ARP |
-| 1 | Physical | Raw bit transmission over the medium | Cables, Wi-Fi, fiber |
+|-------|------|----------|--------------|
+| 7 | **Application** | User-oriented services and interfaces | HTTP, FTP, SMTP, DNS |
+| 6 | **Presentation** | Data formatting, encryption, compression | SSL/TLS, JPEG |
+| 5 | **Session** | Manages sessions between applications | NetBIOS, RPC |
+| 4 | **Transport** | End-to-end communication, error control | TCP, UDP |
+| 3 | **Network** | Logical addressing and routing | IP, ICMP, DHCP |
+| 2 | **Data Link** | Physical addressing, frame delivery | Ethernet, MAC, ARP |
+| 1 | **Physical** | Raw bit transmission over the medium | Cables, Wi-Fi, fiber |
 
-For penetration testing, layers 3 (Network) and 4 (Transport) are the most critical — they govern IP addressing, routing, port scanning, and how connections are established.
+> For penetration testing, **Layers 3 (Network) and 4 (Transport)** are the most critical — they govern IP addressing, routing, port scanning, and how connections are established.
+
+---
 
 ### Layer 3 — The Network Layer
 
-The Network layer is responsible for logical addressing, routing, and forwarding packets between devices on different networks. It determines the optimal path for data to reach its destination.
+Responsible for **logical addressing**, **routing**, and **forwarding packets** between devices on different networks.
 
 #### Key Protocols
 
 | Protocol | Use |
-|---|---|
-| IPv4 | Most used IP version — 32-bit addresses (e.g. 192.168.1.1) |
-| IPv6 | Successor to IPv4 — 128-bit addresses, developed to address IPv4 exhaustion |
-| ICMP | Internet Control Message Protocol — error reporting and diagnostics (ping, traceroute) |
-| DHCP | Dynamic Host Configuration Protocol — automatically assigns IP addresses to devices |
+|----------|-----|
+| **IPv4** | Most used IP version — 32-bit addresses (e.g. `192.168.1.1`) |
+| **IPv6** | Successor to IPv4 — 128-bit addresses, developed to address IPv4 exhaustion |
+| **ICMP** | Internet Control Message Protocol — error reporting and diagnostics (ping, traceroute) |
+| **DHCP** | Dynamic Host Configuration Protocol — automatically assigns IP addresses to devices |
 
 #### Main IP Functions
 
 | Function | Description |
-|---|---|
-| Logical addressing | IP addresses uniquely identify each device on the network |
-| Packet structure | Data is organized into packets with a header and payload |
-| Fragmentation and reassembly | Large packets are split to fit MTU limits, then reassembled at the destination |
-| Routing | Packets are forwarded hop by hop toward the destination IP |
+|----------|-------------|
+| **Logical addressing** | IP addresses uniquely identify each device on the network |
+| **Packet structure** | Data organized into packets with a header and payload |
+| **Fragmentation & reassembly** | Large packets are split to fit MTU limits, then reassembled at destination |
+| **Routing** | Packets forwarded hop-by-hop toward the destination IP |
 
 #### IP Addressing Types
 
 | Type | Description |
-|---|---|
-| Unicast | One-to-one communication |
-| Broadcast | One-to-all communication within a subnet |
-| Multicast | One-to-many communication for a selected group |
+|------|-------------|
+| **Unicast** | One-to-one communication |
+| **Broadcast** | One-to-all within a subnet |
+| **Multicast** | One-to-many for a selected group |
 
 #### Reserved IPv4 Addresses (RFC 5735)
 
 | Range | Use |
-|---|---|
-| 0.0.0.0 – 0.255.255.255 | Represents the network you are connected to |
-| 127.0.0.0 – 127.255.255.255 | Loopback / localhost (your own machine) |
-| 192.168.0.0 – 192.168.255.255 | Private networks (LAN) |
-| 10.0.0.0 – 10.255.255.255 | Private networks (LAN) |
-| 172.16.0.0 – 172.31.255.255 | Private networks (LAN) |
+|-------|-----|
+| `0.0.0.0 – 0.255.255.255` | Represents the network you are connected to |
+| `127.0.0.0 – 127.255.255.255` | Loopback / localhost (your own machine) |
+| `192.168.0.0 – 192.168.255.255` | Private networks (LAN) |
+| `10.0.0.0 – 10.255.255.255` | Private networks (LAN) |
+| `172.16.0.0 – 172.31.255.255` | Private networks (LAN) |
 
 #### IPv4 Packet Header Fields
 
 | Field | Size | Description |
-|---|---|---|
-| Source IP | 32 bits | Source address of the packet |
-| Destination IP | 32 bits | Target address of the packet |
-| TTL (Time To Live) | 8 bits | Decremented at each hop — packet is dropped when TTL reaches 0 |
-| Protocol | 8 bits | Identifies the transport layer protocol (6 = TCP, 17 = UDP, 1 = ICMP) |
-| ToS (Type of Service) | 8 bits | Priority of each packet for QoS |
-| Version | 4 bits | IPv4 or IPv6 |
+|-------|------|-------------|
+| **Source IP** | 32 bits | Source address of the packet |
+| **Destination IP** | 32 bits | Target address of the packet |
+| **TTL (Time To Live)** | 8 bits | Decremented at each hop — packet dropped when TTL reaches 0 |
+| **Protocol** | 8 bits | Transport layer protocol (6 = TCP, 17 = UDP, 1 = ICMP) |
+| **ToS (Type of Service)** | 8 bits | Priority of each packet for QoS |
+| **Version** | 4 bits | IPv4 or IPv6 |
 
 #### ICMP — Internet Control Message Protocol
 
-ICMP is closely associated with IP and used for diagnostics and error reporting:
-
 | ICMP Message | Type | Code | Use |
-|---|---|---|---|
-| Echo Request | 8 | 0 | Sent by ping to test host reachability |
-| Echo Reply | 0 | 0 | Response confirming the host is active |
-| Destination Unreachable | 3 | — | Host or port unreachable |
-| Time Exceeded | 11 | 0 | TTL expired in transit (used by traceroute) |
+|-------------|------|------|-----|
+| **Echo Request** | 8 | 0 | Sent by `ping` to test host reachability |
+| **Echo Reply** | 0 | 0 | Response confirming the host is active |
+| **Destination Unreachable** | 3 | — | Host or port unreachable |
+| **Time Exceeded** | 11 | 0 | TTL expired in transit (used by `traceroute`) |
+
+---
 
 ### Layer 4 — The Transport Layer
 
-The Transport layer provides end-to-end communication between applications on different hosts. It handles error detection, flow control, and data segmentation.
-
-The two main protocols are TCP and UDP.
+Provides **end-to-end communication** between applications. Handles error detection, flow control, and data segmentation.
 
 #### TCP — Transmission Control Protocol
 
-Connection-oriented — establishes a reliable connection before data transfer begins.
+**Connection-oriented** — establishes a reliable connection before data transfer.
 
 | Feature | Description |
-|---|---|
-| Reliability | Data is sent accurately and in the correct order — uses ACK |
-| Retransmission | Lost segments are automatically resent |
-| Ordering | Out-of-order segments are reordered before delivery |
-| Connection | Requires a 3-way handshake before data exchange |
+|---------|-------------|
+| **Reliability** | Data sent accurately and in the correct order — uses ACK |
+| **Retransmission** | Lost segments automatically resent |
+| **Ordering** | Out-of-order segments reordered before delivery |
+| **Connection** | Requires 3-way handshake before data exchange |
 
 #### The TCP 3-Way Handshake
 
-Client → SYN → Server (I want to connect)  
-Client ← SYN-ACK ← Server (Confirmed, I accept)  
-Client → ACK → Server (Connection established)
+```
+Client  →  SYN      →  Server    (I want to connect)
+Client  ←  SYN-ACK  ←  Server    (Confirmed, I accept)
+Client  →  ACK      →  Server    (Connection established)
+```
 
-This handshake is critical for penetration testing — SYN scans (half-open) exploit it by sending a SYN but never completing the handshake, avoiding logging on the target.
+> **SYN scans** (half-open) send a SYN but never complete the handshake — faster and avoids logging on the target.
 
 #### TCP Control Flags
 
 | Flag | Description |
-|---|---|
-| SYN | Initiates a connection request |
-| ACK | Acknowledges data |
-| FIN | Initiates orderly connection termination |
-| RST | Resets/abruptly terminates a connection |
-| PSH | Pushes data immediately to the application |
-| URG | Marks data as urgent |
+|------|-------------|
+| **SYN** | Initiates a connection request |
+| **ACK** | Acknowledges received data |
+| **FIN** | Initiates orderly connection termination |
+| **RST** | Resets/abruptly terminates a connection |
+| **PSH** | Pushes data immediately to the application |
+| **URG** | Marks data as urgent |
 
 #### TCP Port Ranges
 
 | Range | Type | Description |
-|---|---|---|
-| 0 – 1023 | Well-known ports | Reserved by IANA for standard services |
-| 1024 – 49151 | Registered ports | Assigned by IANA for applications/vendors |
-| 49152 – 65535 | Dynamic/ephemeral | Temporary ports used by clients |
+|-------|------|-------------|
+| **0 – 1023** | Well-known | Reserved by IANA for standard services |
+| **1024 – 49151** | Registered | Assigned by IANA for applications/vendors |
+| **49152 – 65535** | Dynamic/ephemeral | Temporary ports used by clients |
 
 #### Common Well-Known Ports
 
 | Port | Protocol | Service |
-|---|---|---|
+|------|----------|---------|
 | 21 | TCP | FTP |
 | 22 | TCP | SSH |
 | 23 | TCP | Telnet |
@@ -158,68 +164,67 @@ This handshake is critical for penetration testing — SYN scans (half-open) exp
 
 #### UDP — User Datagram Protocol
 
-Connectionless — sends data without first establishing a connection.
+**Connectionless** — sends data without establishing a connection first.
 
 | Feature | Description |
-|---|---|
-| Speed | Faster than TCP — no handshake overhead |
-| Reliability | No guarantee of delivery, ordering, or error correction |
-| Independence | Each datagram is treated independently |
-| Use cases | DNS, DHCP, SNMP, VoIP, streaming, online gaming |
+|---------|-------------|
+| **Speed** | Faster than TCP — no handshake overhead |
+| **Reliability** | No guarantee of delivery, ordering, or error correction |
+| **Independence** | Each datagram treated independently |
+| **Use cases** | DNS, DHCP, SNMP, VoIP, streaming, online gaming |
 
 #### TCP vs UDP
 
 | Feature | TCP | UDP |
-|---|---|---|
-| Connection | Connection-oriented (3-way handshake) | Connectionless |
-| Reliability | Guaranteed delivery with ACK | No delivery guarantee |
-| Speed | Slower | Faster |
-| Ordering | Data arrives in order | No ordering |
-| Error correction | Yes (retransmission) | No |
-| Use cases | HTTP, HTTPS, SSH, FTP, SMB | DNS, VoIP, streaming |
-
-### Subnetting and CIDR
-
-Subnetting divides a large IP network into smaller, more manageable subnets. It improves network efficiency and security by isolating traffic between segments.
-
-CIDR (Classless Inter-Domain Routing) notation expresses a network address with its prefix length:
-
-| CIDR | Subnet Mask | Available Hosts |
-|---|---|---|
-| /8 | 255.0.0.0 | 16,777,214 |
-| /16 | 255.255.0.0 | 65,534 |
-| /24 | 255.255.255.0 | 254 |
-| /28 | 255.255.255.240 | 14 |
-| /30 | 255.255.255.252 | 2 |
-| /32 | 255.255.255.255 | 1 (single host) |
-
-Example: A perimeter of 200.200.0.0/16 means the network could contain up to 65,536 IP addresses (200.200.0.0 – 200.200.255.255). During a pentest, your first job is to determine which of those addresses are active.
-
-### Key Points
-
-- Networks communicate through packets — each with a header (routing information) and a payload (data).
-- The OSI model has 7 layers — layers 3 (Network) and 4 (Transport) are the most relevant for pentesting.
-- Layer 3 (IP) handles logical addressing, routing, and packet forwarding — key protocols: IPv4, IPv6, ICMP, DHCP.
-- The IPv4 header contains Source IP, Destination IP, TTL, Protocol, and ToS — all critical for understanding packet behavior.
-- TTL is decremented at each hop — it reaches 0 and the packet is dropped. It is used by traceroute to map routes.
-- ICMP is used for diagnostics: Echo Request (type 8) / Echo Reply (type 0) = ping; type 11 = TTL expired (traceroute).
-- Layer 4 (Transport) handles end-to-end communication — protocols: TCP (reliable) and UDP (fast, unreliable).
-- TCP requires a 3-way handshake (SYN → SYN-ACK → ACK) before data transfer — critical for understanding port scanning.
-- SYN scans (half-open) never complete the handshake — faster and less likely to be logged.
-- TCP flags: SYN (connection), ACK (acknowledgment), FIN (closure), RST (reset) — each plays a role in scan types.
-- Ports 0–1023 are well-known (IANA), 1024–49151 registered, 49152–65535 ephemeral.
-- UDP is connectionless — faster but unreliable. Used by DNS (53), DHCP (67/68), SNMP (161).
-- CIDR notation (/24, /16) defines network size — essential for pentest scope and host discovery.
-- A /16 perimeter = up to 65,534 potential hosts to discover — always start with host discovery before port scanning.
+|---------|-----|-----|
+| **Connection** | Connection-oriented (3-way handshake) | Connectionless |
+| **Reliability** | Guaranteed delivery with ACK | No delivery guarantee |
+| **Speed** | Slower | Faster |
+| **Ordering** | Data arrives in order | No ordering |
+| **Error correction** | Yes (retransmission) | No |
+| **Use cases** | HTTP, HTTPS, SSH, FTP, SMB | DNS, VoIP, streaming |
 
 ---
 
+### Subnetting and CIDR
+
+**Subnetting** divides a large IP network into smaller, more manageable subnets — improves efficiency and security by isolating traffic between segments.
+
+**CIDR (Classless Inter-Domain Routing)** notation expresses a network address with its prefix length:
+
+| CIDR | Subnet Mask | Available Hosts |
+|------|-------------|----------------|
+| `/8` | 255.0.0.0 | 16,777,214 |
+| `/16` | 255.255.0.0 | 65,534 |
+| `/24` | 255.255.255.0 | 254 |
+| `/28` | 255.255.255.240 | 14 |
+| `/30` | 255.255.255.252 | 2 |
+| `/32` | 255.255.255.255 | 1 (single host) |
+
+**Example**: A scope of `200.200.0.0/16` = up to 65,536 IPs (`200.200.0.0 – 200.200.255.255`). During a pentest, your first job is to determine which addresses are active.
+
+---
+
+### Key Takeaways — Networking Fundamentals
+
+- Networks communicate through **packets** — header (routing info) + payload (data).
+- The **OSI model** has 7 layers — Layers 3 and 4 are the most relevant for pentesting.
+- **Layer 3 (IP)**: logical addressing, routing — key protocols: IPv4, IPv6, ICMP, DHCP.
+- **TTL** decrements at each hop — reaches 0, packet is dropped. Used by `traceroute`.
+- **ICMP**: Echo Request (type 8) / Echo Reply (type 0) = `ping`; type 11 = TTL expired = `traceroute`.
+- **TCP**: requires 3-way handshake — reliable, ordered, slower. SYN scans exploit the handshake.
+- **UDP**: connectionless — faster, unreliable. Used by DNS, DHCP, SNMP.
+- **TCP flags**: SYN, ACK, FIN, RST — each plays a role in scan types.
+- Ports **0–1023** = well-known; **1024–49151** = registered; **49152–65535** = ephemeral.
+- A `/16` scope = up to **65,534 hosts** — always start with host discovery before port scanning.
+
+---
 
 ## Firewall Detection & IDS Evasion
 
-This lesson covers how to detect firewalls and IDS/IPS systems during a scan, and the techniques Nmap provides to evade or bypass basic filtering — essential skills for network-based penetration testing.
+This lesson covers how to detect firewalls and IDS/IPS systems during a scan, and the Nmap techniques used to evade or bypass basic filtering.
 
-> ⚠️ Note: All commands assume you are operating from a Kali Linux attack machine. Replace 10.10.10.10 with your actual target IP in every command.
+> ⚠️ **Note**: All commands assume you are operating from a **Kali Linux** attack machine. Replace `10.10.10.10` with your actual target IP.
 
 ---
 
@@ -227,21 +232,17 @@ This lesson covers how to detect firewalls and IDS/IPS systems during a scan, an
 
 | System | Full Name | Purpose |
 |--------|-----------|---------|
-| **Firewall** | — | Filters network traffic based on rules — blocks or allows packets by port, IP, or protocol |
+| **Firewall** | — | Filters traffic based on rules — blocks or allows packets by port, IP, or protocol |
 | **IDS** | Intrusion Detection System | Monitors traffic and **alerts** on suspicious activity — does not block |
 | **IPS** | Intrusion Prevention System | Monitors traffic and **actively blocks** suspicious activity |
 
-Understanding how these systems work is critical — not just to evade them, but to **test whether they are functioning correctly** as part of a penetration test.
+Understanding these systems is critical — not just to evade them, but to **test whether they are functioning correctly** as part of a pentest.
 
 ---
 
 ### Firewall Detection
 
-Before attempting evasion, identify whether a firewall is present and what it is filtering.
-
 #### Method 1: Port State Analysis
-
-Nmap reports three possible states for a port:
 
 | Port State | Meaning | Firewall Present? |
 |-----------|---------|------------------|
@@ -250,105 +251,80 @@ Nmap reports three possible states for a port:
 | **Filtered** | No response or ICMP unreachable received | **Yes — firewall is blocking** |
 
 ```bash
-# A filtered result strongly suggests a firewall is in place
 nmap -sS -p 80,443,22,3389 10.10.10.10
 ```
 
 If you see **`filtered`** on ports that should be open, a firewall is blocking the probes.
 
-### Method 2: ACK Scan (`-sA`)
+#### Method 2: ACK Scan (`-sA`)
 
-The **ACK scan** is specifically designed to map firewall rules — it does not detect open ports, it detects **whether ports are filtered**.
+Designed to **map firewall rules** — does not detect open ports, detects whether ports are filtered.
 
 ```bash
 nmap -sA -p 80,443,22 10.10.10.10
 ```
 
-How it works:
-- Sends a TCP packet with only the **ACK flag** set.
-- An **unfiltered** port (with or without a firewall allowing the packet) responds with **RST**.
-- A **filtered** port (firewall blocking it) produces **no response** or an ICMP unreachable.
-
 | Response | Interpretation |
 |----------|---------------|
-| **RST received** | Port is unfiltered — firewall allows ACK packets through |
-| **No response / ICMP unreachable** | Port is filtered — firewall is blocking |
+| **RST received** | Port unfiltered — firewall allows ACK packets through |
+| **No response / ICMP unreachable** | Port filtered — firewall is blocking |
 
-> The ACK scan is the best way to distinguish between **stateful** and **stateless** firewalls — stateful firewalls drop unexpected ACK packets; stateless ones may let them through.
+> The ACK scan distinguishes **stateful** (drops unexpected ACK) from **stateless** (may let ACK through) firewalls.
 
 #### Method 3: Window Scan (`-sW`)
 
-Similar to the ACK scan but analyzes the **TCP window size** in RST responses to differentiate open from closed ports through certain firewall types.
+Analyzes the **TCP window size** in RST responses to differentiate open from closed ports through certain firewall types.
 
 ```bash
 nmap -sW -p 80,443 10.10.10.10
 ```
 
-#### Method 4: Firewall vs No Firewall — Quick Test
+#### Method 4: Quick Comparison Test
 
 ```bash
-# Compare SYN scan vs ACK scan on the same ports
-nmap -sS -p 80 10.10.10.10   # Port state from SYN scan
-nmap -sA -p 80 10.10.10.10   # Filtered/unfiltered from ACK scan
+nmap -sS -p 80 10.10.10.10   # SYN scan — port state
+nmap -sA -p 80 10.10.10.10   # ACK scan — filtered or unfiltered
 ```
 
-If SYN shows **filtered** but ACK shows **unfiltered** → stateful firewall is dropping SYN packets but not ACK packets.
+SYN = **filtered** + ACK = **unfiltered** → stateful firewall dropping SYN but not ACK packets.
 
 ---
 
-## IDS/IPS Evasion Techniques
-
-Once you've identified filtering, use these techniques to make scans harder to detect or block. These are also used to **test whether your IDS/IPS detects them**.
+### IDS/IPS Evasion Techniques
 
 #### 1. Packet Fragmentation (`-f`, `--mtu`)
 
-**Packet fragmentation** splits Nmap probes into smaller IP fragments. Some older IDS/firewall systems struggle to reassemble and inspect fragmented packets, allowing them through.
+Splits probes into smaller IP fragments — older IDS/firewalls may fail to reassemble and inspect them.
 
 ```bash
-# Fragment into 8-byte chunks (after IP header)
-nmap -sS -f 10.10.10.10
-
-# Fragment into 16-byte chunks (double -f)
-nmap -sS -ff 10.10.10.10
-
-# Set custom fragment size (must be multiple of 8)
-nmap -sS --mtu 24 10.10.10.10
+nmap -sS -f 10.10.10.10           # 8-byte fragments
+nmap -sS -ff 10.10.10.10          # 16-byte fragments
+nmap -sS --mtu 24 10.10.10.10     # Custom fragment size (multiple of 8)
 ```
 
-> Modern stateful firewalls and IDS/IPS systems **can** reassemble fragments — fragmentation is most effective against older or misconfigured systems.
+> Modern stateful firewalls **can** reassemble fragments — most effective against older or misconfigured systems.
 
 #### 2. Decoy Scanning (`-D`)
 
-**Decoys** mix fake source IPs with the real scan, making it appear that multiple hosts are scanning simultaneously. The target and any monitoring system see traffic from many IPs, making it harder to identify the real attacker.
+Mixes fake source IPs with the real scan — target sees traffic from many IPs, hiding the real attacker.
 
 ```bash
-# Specify decoy IPs manually (ME = your real IP)
-nmap -sS -D 10.10.10.10,10.10.10.11,ME 10.10.10.10
-
-# Use random decoys (RND generates random IPs)
-nmap -sS -D RND:5 10.10.10.10
+nmap -sS -D 10.10.10.5,10.10.10.6,ME 10.10.10.10   # Manual decoys
+nmap -sS -D RND:5 10.10.10.10                        # 5 random decoys
 ```
 
-> Decoys work best when the IDS is configured to block individual IPs based on scan volume. With decoys, the real IP is hidden among many fake ones.
+#### 3. Source Port Spoofing (`-g` / `--source-port`)
 
-#### 3. Source Port Manipulation (`-g` / `--source-port`)
-
-Some firewalls allow traffic from **trusted source ports** (e.g., DNS port 53, HTTP port 80) without deep inspection. By spoofing the source port, packets may bypass simple port-based rules.
+Some firewalls allow traffic from trusted ports (DNS 53, HTTP 80) without deep inspection.
 
 ```bash
-# Make scan traffic appear to come from port 53 (DNS)
-nmap -sS -g 53 10.10.10.10
-nmap -sS --source-port 53 10.10.10.10
-
-# Appear to come from port 80 (HTTP)
-nmap -sS -g 80 10.10.10.10
+nmap -sS -g 53 10.10.10.10     # Appear to come from DNS port
+nmap -sS -g 80 10.10.10.10     # Appear to come from HTTP port
 ```
-
-> This technique exploits **misconfigured firewalls** that trust traffic based on source port alone rather than full packet inspection.
 
 #### 4. Random Data Length (`--data-length`)
 
-Appending random bytes to packets makes probes less consistent and harder for signature-based IDS systems to match against known scan patterns.
+Appends random bytes to packets — makes probes less consistent and harder for signature-based IDS to match.
 
 ```bash
 nmap -sS --data-length 25 10.10.10.10
@@ -356,130 +332,140 @@ nmap -sS --data-length 25 10.10.10.10
 
 #### 5. Disable DNS Resolution (`-n`)
 
-By default, Nmap resolves hostnames — each DNS query is a potential detection point. Disabling DNS resolution makes scans faster and leaves fewer traces.
+Prevents DNS queries — each query is a potential detection point.
 
 ```bash
 nmap -sS -n 10.10.10.10
 ```
 
-#### 6. Spoof Source IP (`-S`)
+#### 6. Source IP Spoofing (`-S`)
 
-Spoofing the source IP makes traffic appear to come from a different host. However, **replies go back to the spoofed IP**, so you won't receive them. Useful for testing IDS alert rules.
+Makes traffic appear from a different host. Replies go to the spoofed IP — primarily used for **IDS rule testing**.
 
 ```bash
 nmap -sS -S 192.168.1.50 -e eth0 10.10.10.10
 ```
 
-> `-e` specifies the network interface to send from. Without receiving replies, you cannot determine open ports — this is primarily for **IDS rule testing**.
-
 #### 7. MAC Address Spoofing (`--spoof-mac`)
 
-Spoofs the source MAC address in Ethernet frames — useful on local networks where MAC-based filtering is in place.
+Spoofs the source MAC — useful on LANs with MAC-based filtering.
 
 ```bash
-# Spoof a random MAC address
-nmap -sS --spoof-mac 0 10.10.10.10
-
-# Spoof a specific vendor MAC (Apple in this case)
-nmap -sS --spoof-mac Apple 10.10.10.10
-
-# Spoof a specific MAC address
-nmap -sS --spoof-mac 00:11:22:33:44:55 10.10.10.10
+nmap -sS --spoof-mac 0 10.10.10.10            # Random MAC
+nmap -sS --spoof-mac Apple 10.10.10.10        # Vendor MAC
+nmap -sS --spoof-mac 00:11:22:33:44:55 10.10.10.10  # Specific MAC
 ```
 
 ---
 
 ### Timing-Based Evasion
 
-IDS systems often detect scans based on the **volume and rate** of packets. Slowing down a scan reduces the signature footprint.
+IDS systems detect scans based on **packet volume and rate**. Slowing down reduces the detection footprint.
 
 #### Timing Templates (`-T`)
 
 | Template | Name | Speed | Stealth | Use Case |
 |----------|------|-------|---------|---------|
-| `-T0` | Paranoid | Extremely slow | Maximum | Evade most IDS — very long waits between probes |
-| `-T1` | Sneaky | Very slow | High | Stealth scans — minutes between probes |
-| `-T2` | Polite | Slow | Medium | Reduce load on target network |
-| `-T3` | Normal | Default | Default | Balanced — standard starting point |
-| `-T4` | Aggressive | Fast | Low | Fast scans on reliable networks |
-| `-T5` | Insane | Very fast | None | Maximum speed — high packet loss risk |
+| `-T0` | Paranoid | Extremely slow | Maximum | Evade most IDS |
+| `-T1` | Sneaky | Very slow | High | Stealth scans |
+| `-T2` | Polite | Slow | Medium | Reduce network load |
+| `-T3` | Normal | Default | Default | Balanced starting point |
+| `-T4` | Aggressive | Fast | Low | Reliable internal networks |
+| `-T5` | Insane | Very fast | None | ⚠️ High packet loss risk |
 
 ```bash
-# Slow stealthy scan — evades many IDS rate thresholds
-nmap -sS -T1 10.10.10.10
-
-# Standard scan
-nmap -sS -T3 10.10.10.10
-
-# Fast scan for internal reliable networks
-nmap -sS -T4 10.10.10.10
+nmap -sS -T1 10.10.10.10    # Slow stealth scan
+nmap -sS -T3 10.10.10.10    # Standard scan
+nmap -sS -T4 10.10.10.10    # Fast internal scan
 ```
 
 #### Manual Timing Controls
 
 ```bash
-# Add delay between probes to the same host
-nmap -sS --scan-delay 200ms 10.10.10.10
+nmap -sS --scan-delay 200ms 10.10.10.10   # Delay between probes
+nmap --min-rate 50 10.10.10.10             # Minimum 50 packets/sec
+nmap --host-timeout 5m 10.10.10.10         # Give up after 5 minutes per host
+```
 
-# Set minimum packet rate (packets per second)
-nmap --min-rate 50 10.10.10.10
+---
 
-# Set maximum time per host before giving up
-nmap --host-timeout 5m 10.10.10.10
+### Output Formats
+
+Always save scan results for analysis, reporting, and Metasploit import.
+
+| Flag | Format | Use |
+|------|--------|-----|
+| `-oN` | Normal text | Human-readable notes |
+| `-oX` | XML | Metasploit import, tool integration |
+| `-oG` | Grepable | Shell parsing and scripting |
+| `-oA` | All formats | Saves all three at once |
+
+```bash
+nmap -sS -oN scan.txt 10.10.10.10       # Text
+nmap -sS -oX scan.xml 10.10.10.10       # XML
+nmap -sS -oA scan_results 10.10.10.10   # All formats
+```
+
+#### Import XML into Metasploit
+
+```bash
+nmap -sS -sV -oX scan.xml 10.10.10.10
+msfconsole
+msf6 > db_import scan.xml
+msf6 > hosts
+msf6 > services
 ```
 
 ---
 
 ### Combined Evasion Workflow
 
-A practical evasion-focused scan combining multiple techniques:
-
 ```bash
-# Fragment + decoys + source port spoof + no DNS + slow timing
+# Fragment + decoys + source port spoof + no DNS + slow timing + XML output
 nmap -sS -Pn -f -D RND:5 -g 53 -n -T2 --data-length 15 -oX evasion_scan.xml 10.10.10.10
 ```
 
-Flag breakdown:
-- `-sS` — SYN stealth scan
-- `-Pn` — skip host discovery (assume host is up)
-- `-f` — fragment packets
-- `-D RND:5` — 5 random decoy IPs
-- `-g 53` — source port 53 (DNS)
-- `-n` — no DNS resolution
-- `-T2` — polite timing
-- `--data-length 15` — append 15 random bytes
-- `-oX` — save results as XML
+| Flag | Purpose |
+|------|---------|
+| `-sS` | SYN stealth scan |
+| `-Pn` | Skip host discovery |
+| `-f` | Fragment packets |
+| `-D RND:5` | 5 random decoy IPs |
+| `-g 53` | Source port 53 (DNS) |
+| `-n` | No DNS resolution |
+| `-T2` | Polite timing |
+| `--data-length 15` | 15 random bytes appended |
+| `-oX` | Save as XML |
 
 ---
 
 ### Evasion Techniques Summary
 
-| Technique | Nmap Flag | Evades |
-|-----------|-----------|-------|
-| **Packet fragmentation** | `-f`, `--mtu` | Simple packet filters, older IDS |
-| **Decoy scanning** | `-D RND:n` | IP-based detection, source tracking |
-| **Source port spoof** | `-g <port>` | Port-based firewall rules |
-| **Random data length** | `--data-length` | Signature-based IDS |
-| **Disable DNS** | `-n` | DNS-based detection |
-| **Source IP spoof** | `-S` | IDS alert rule testing |
-| **MAC spoof** | `--spoof-mac` | MAC-based filtering (local networks) |
-| **Slow timing** | `-T0`, `-T1`, `--scan-delay` | Rate-based IDS thresholds |
-| **Skip host discovery** | `-Pn` | ICMP-blocking firewalls |
+| Technique | Flag | Evades |
+|-----------|------|-------|
+| Packet fragmentation | `-f`, `--mtu` | Simple packet filters, older IDS |
+| Decoy scanning | `-D RND:n` | IP-based detection, source tracking |
+| Source port spoof | `-g <port>` | Port-based firewall rules |
+| Random data length | `--data-length` | Signature-based IDS |
+| Disable DNS | `-n` | DNS-based detection |
+| Source IP spoof | `-S` | IDS alert rule testing |
+| MAC spoof | `--spoof-mac` | MAC-based filtering (LAN) |
+| Slow timing | `-T0`, `-T1`, `--scan-delay` | Rate-based IDS thresholds |
+| Skip host discovery | `-Pn` | ICMP-blocking firewalls |
 
 ---
 
-### Key Takeaways
+### Key Takeaways — Firewall Detection & IDS Evasion
 
-- **Firewalls** filter traffic by port/IP/protocol — detected by **filtered** port states in Nmap output.
-- **IDS** alerts on suspicious traffic; **IPS** actively blocks it — both analyze packet patterns and rates.
-- The **ACK scan** (`-sA`) is the best tool for mapping firewall rules — RST = unfiltered, no response = filtered.
-- **Filtered** ports in a SYN scan = firewall is blocking those probes.
-- **Stateful firewalls** track connection state — they drop unexpected ACK packets. **Stateless firewalls** may let them through.
-- **Packet fragmentation** (`-f`) splits probes into 8-byte chunks — bypasses some older filters but not modern stateful firewalls.
-- **Decoys** (`-D RND:5`) hide the real scanner among fake source IPs — harder to trace back to the attacker.
-- **Source port spoofing** (`-g 53`) exploits misconfigured firewall rules that trust traffic from certain ports.
-- **Slow timing** (`-T0`, `-T1`, `--scan-delay`) evades rate-based IDS detection by reducing packet volume per second.
-- **`-Pn`** skips ICMP host discovery — essential when the target blocks pings but has open ports.
-- **Never use `-T5`** in real assessments — too aggressive, causes packet loss and inaccurate results.
-- Combine techniques for maximum evasion: `-f -D RND:5 -g 53 -n -T2 --data-length 15`.
-- Always **save scan results** with `-oX` (XML) for Metasploit import or `-oN` (text) for notes.
+- **Firewalls** filter by port/IP/protocol — detected by **filtered** port states in Nmap output.
+- **IDS** alerts; **IPS** blocks — both analyze packet patterns and rates.
+- **ACK scan** (`-sA`): RST = unfiltered, no response = filtered — best tool for mapping firewall rules.
+- **Stateful firewalls** drop unexpected ACK packets; **stateless** may let them through.
+- **Fragmentation** (`-f`) = 8-byte chunks — effective against older systems, not modern stateful firewalls.
+- **Decoys** (`-D RND:5`) hide the real scanner among random source IPs.
+- **Source port spoof** (`-g 53`) bypasses firewall rules that trust traffic from port 53 or 80.
+- **Slow timing** (`-T0`, `-T1`, `--scan-delay`) evades rate-based IDS by reducing packets per second.
+- **`-Pn`** skips ICMP host discovery — use when target blocks pings but has open ports.
+- **Never use `-T5`** in real assessments — causes packet loss and inaccurate results.
+- Best evasion combo: `-f -D RND:5 -g 53 -n -T2 --data-length 15`.
+- Always save with **`-oX`** (XML) for Metasploit import via `db_import`.
