@@ -44,9 +44,9 @@ Nmap supporte de nombreuses techniques de scan, chacune avec différents avantag
 
 Exemple:
 ```bash
-nmap -sS 192.168.1.5
-nmap -sS -p 22,80,443 192.168.1.5
-nmap -sS -p- 192.168.1.5        # scanner tous les 65535 ports
+nmap -sS <target_ip>
+nmap -sS -p 22,80,443 <target_ip>
+nmap -sS -p- <target_ip>        # scanner tous les 65535 ports
 ```
 
 ---
@@ -72,8 +72,8 @@ nmap -sS -p- 192.168.1.5        # scanner tous les 65535 ports
 
 Exemple:
 ```bash
-nmap -sT 192.168.1.5
-nmap -sT -p 80,443 192.168.1.5
+nmap -sT <target_ip>
+nmap -sT -p 80,443 <target_ip>
 ```
 
 ---
@@ -100,9 +100,9 @@ nmap -sT -p 80,443 192.168.1.5
 
 Exemple:
 ```bash
-nmap -sU 192.168.1.5
-nmap -sU -p 53,161,123 192.168.1.5      # DNS, SNMP, NTP
-nmap -sU --top-ports 100 192.168.1.5    # top 100 ports UDP
+nmap -sU <target_ip>
+nmap -sU -p 53,161,123 <target_ip>      # DNS, SNMP, NTP
+nmap -sU --top-ports 100 <target_ip>    # top 100 ports UDP
 ```
 
 ---
@@ -127,8 +127,8 @@ nmap -sU --top-ports 100 192.168.1.5    # top 100 ports UDP
 
 Exemple:
 ```bash
-nmap -sA 192.168.1.5
-nmap -sA -p 80,443 192.168.1.5
+nmap -sA <target_ip>
+nmap -sA -p 80,443 <target_ip>
 ```
 
 ---
@@ -153,7 +153,7 @@ nmap -sA -p 80,443 192.168.1.5
 
 Exemple:
 ```bash
-nmap -sW 192.168.1.5
+nmap -sW <target_ip>
 ```
 
 ---
@@ -181,9 +181,9 @@ Ce sont des **scans furtifs** qui envoient des paquets **sans drapeaux** (NULL),
 
 Exemple:
 ```bash
-nmap -sN 192.168.1.5
-nmap -sF 192.168.1.5
-nmap -sX 192.168.1.5
+nmap -sN <target_ip>
+nmap -sF <target_ip>
+nmap -sX <target_ip>
 ```
 
 ---
@@ -217,9 +217,9 @@ Vous pouvez spécifier quels ports scanner en utilisant `-p` :
 
 Exemple:
 ```bash
-nmap -sS -p 22,80,443 192.168.1.5
-nmap -sS -p- 192.168.1.5
-nmap -sS --top-ports 1000 192.168.1.5
+nmap -sS -p 22,80,443 <target_ip>
+nmap -sS -p- <target_ip>
+nmap -sS --top-ports 1000 <target_ip>
 ```
 
 ---
@@ -233,8 +233,8 @@ nmap -sS --top-ports 1000 192.168.1.5
 
 Exemple:
 ```bash
-nmap -sS -sV 192.168.1.5
-nmap -sS -sV --version-intensity 5 192.168.1.5   # intensité maximale
+nmap -sS -sV <target_ip>
+nmap -sS -sV --version-intensity 5 <target_ip>   # intensité maximale
 ```
 
 ---
@@ -249,7 +249,7 @@ nmap -sS -sV --version-intensity 5 192.168.1.5   # intensité maximale
 
 Exemple:
 ```bash
-nmap -sS -O 192.168.1.5
+nmap -sS -O <target_ip>
 ```
 
 ---
@@ -264,7 +264,7 @@ nmap -sS -O 192.168.1.5
 
 Exemple:
 ```bash
-nmap -A 192.168.1.5
+nmap -A <target_ip>
 ```
 
 ---
@@ -278,9 +278,9 @@ nmap -A 192.168.1.5
 
 Exemple:
 ```bash
-nmap -sS -sC 192.168.1.5
-nmap --script vuln 192.168.1.5
-nmap --script http-enum 192.168.1.5
+nmap -sS -sC <target_ip>
+nmap --script vuln <target_ip>
+nmap --script http-enum <target_ip>
 ```
 
 ---
