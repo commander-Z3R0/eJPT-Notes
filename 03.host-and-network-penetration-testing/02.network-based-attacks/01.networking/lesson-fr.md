@@ -224,7 +224,7 @@ Le **sous-réseautage** divise un grand réseau IP en sous-réseaux plus petits 
 
 Cette leçon couvre comment détecter les firewalls et systèmes IDS/IPS lors d'un scan, et les techniques Nmap pour contourner le filtrage de base.
 
-> ⚠️ **Note** : Toutes les commandes supposent que vous opérez depuis une machine d'attaque **Kali Linux**. Remplacez `10.10.10.10` par votre IP cible réelle.
+> ⚠️ **Note** : Toutes les commandes supposent que vous opérez depuis une machine d'attaque **Kali Linux**. Remplacez `<target_ip>` par votre IP cible réelle.
 
 ---
 
@@ -249,7 +249,7 @@ Cette leçon couvre comment détecter les firewalls et systèmes IDS/IPS lors d'
 | **Filtered** | Pas de réponse ou ICMP inaccessible | **Oui — un firewall bloque** |
 
 ```bash
-nmap -sS -p 80,443,22,3389 10.10.10.10
+nmap -sS -p 80,443,22,3389 <target_ip>
 ```
 
 #### Méthode 2 : Scan ACK (`-sA`)
@@ -257,7 +257,7 @@ nmap -sS -p 80,443,22,3389 10.10.10.10
 Conçu pour **cartographier les règles de firewall** — ne détecte pas les ports ouverts, détecte s'ils sont filtrés.
 
 ```bash
-nmap -sA -p 80,443,22 10.10.10.10
+nmap -sA -p 80,443,22 <target_ip>
 ```
 
 | Réponse | Interprétation |
@@ -272,14 +272,14 @@ nmap -sA -p 80,443,22 10.10.10.10
 Analyse la **taille de la fenêtre TCP** dans les réponses RST pour différencier les ports ouverts des fermés.
 
 ```bash
-nmap -sW -p 80,443 10.10.10.10
+nmap -sW -p 80,443 <target_ip>
 ```
 
 #### Méthode 4 : Test Rapide
 
 ```bash
-nmap -sS -p 80 10.10.10.10   # État du port avec scan SYN
-nmap -sA -p 80 10.10.10.10   # Filtré/non filtré avec scan ACK
+nmap -sS -p 80 <target_ip>   # État du port avec scan SYN
+nmap -sA -p 80 <target_ip>   # Filtré/non filtré avec scan ACK
 ```
 
 SYN = **filtered** + ACK = **unfiltered** → firewall stateful rejetant les SYN mais pas les ACK.
@@ -293,9 +293,9 @@ SYN = **filtered** + ACK = **unfiltered** → firewall stateful rejetant les SYN
 Divise les sondes en fragments IP plus petits — les anciens IDS/firewalls peuvent échouer à les inspecter.
 
 ```bash
-nmap -sS -f 10.10.10.10           # Fragments de 8 octets
-nmap -sS -ff 10.10.10.10          # Fragments de 16 octets
-nmap -sS --mtu 24 10.10.10.10     # Taille personnalisée (multiple de 8)
+nmap -sS -f <target_ip>           # Fragments de 8 octets
+nmap -sS -ff <target_ip>          # Fragments de 16 octets
+nmap -sS --mtu 24 <target_ip>     # Taille personnalisée (multiple de 8)
 ```
 
 #### 2. Scan avec Leurres (`-D`)
@@ -303,8 +303,8 @@ nmap -sS --mtu 24 10.10.10.10     # Taille personnalisée (multiple de 8)
 Mélange de fausses IPs sources avec le scan réel — la cible voit du trafic provenant de nombreuses IPs.
 
 ```bash
-nmap -sS -D 10.10.10.5,10.10.10.6,ME 10.10.10.10   # Leurres manuels
-nmap -sS -D RND:5 10.10.10.10                        # 5 leurres aléatoires
+nmap -sS -D 10.10.10.5,10.10.10.6,ME <target_ip>   # Leurres manuels
+nmap -sS -D RND:5 <target_ip>                        # 5 leurres aléatoires
 ```
 
 #### 3. Falsification du Port Source (`-g` / `--source-port`)
@@ -312,8 +312,8 @@ nmap -sS -D RND:5 10.10.10.10                        # 5 leurres aléatoires
 Certains firewalls autorisent le trafic de ports de confiance (DNS 53, HTTP 80) sans inspection approfondie.
 
 ```bash
-nmap -sS -g 53 10.10.10.10     # Sembler venir du port DNS
-nmap -sS -g 80 10.10.10.10     # Sembler venir du port HTTP
+nmap -sS -g 53 <target_ip>     # Sembler venir du port DNS
+nmap -sS -g 80 <target_ip>     # Sembler venir du port HTTP
 ```
 
 #### 4. Longueur de Données Aléatoire (`--data-length`)
@@ -321,7 +321,7 @@ nmap -sS -g 80 10.10.10.10     # Sembler venir du port HTTP
 Ajoute des octets aléatoires aux paquets — plus difficile pour les IDS à signatures de les détecter.
 
 ```bash
-nmap -sS --data-length 25 10.10.10.10
+nmap -sS --data-length 25 <target_ip>
 ```
 
 #### 5. Désactiver la Résolution DNS (`-n`)
@@ -329,7 +329,7 @@ nmap -sS --data-length 25 10.10.10.10
 Évite les requêtes DNS — chaque requête est un point de détection potentiel.
 
 ```bash
-nmap -sS -n 10.10.10.10
+nmap -sS -n <target_ip>
 ```
 
 #### 6. Falsification d'IP Source (`-S`)
@@ -337,7 +337,7 @@ nmap -sS -n 10.10.10.10
 Le trafic semble provenir d'un autre hôte. Les réponses vont à l'IP falsifiée — principalement pour **tester les règles d'alerte IDS**.
 
 ```bash
-nmap -sS -S 192.168.1.50 -e eth0 10.10.10.10
+nmap -sS -S 192.168.1.50 -e eth0 <target_ip>
 ```
 
 #### 7. Falsification d'Adresse MAC (`--spoof-mac`)
@@ -345,9 +345,9 @@ nmap -sS -S 192.168.1.50 -e eth0 10.10.10.10
 Falsifie la MAC source — utile sur les LANs avec filtrage basé sur MAC.
 
 ```bash
-nmap -sS --spoof-mac 0 10.10.10.10            # MAC aléatoire
-nmap -sS --spoof-mac Apple 10.10.10.10        # MAC d'un fabricant
-nmap -sS --spoof-mac 00:11:22:33:44:55 10.10.10.10  # MAC spécifique
+nmap -sS --spoof-mac 0 <target_ip>            # MAC aléatoire
+nmap -sS --spoof-mac Apple <target_ip>        # MAC d'un fabricant
+nmap -sS --spoof-mac 00:11:22:33:44:55 <target_ip>  # MAC spécifique
 ```
 
 ---
@@ -366,17 +366,17 @@ nmap -sS --spoof-mac 00:11:22:33:44:55 10.10.10.10  # MAC spécifique
 | `-T5` | Insane | Très rapide | Aucune | ⚠️ Risque élevé de perte de paquets |
 
 ```bash
-nmap -sS -T1 10.10.10.10    # Scan furtif lent
-nmap -sS -T3 10.10.10.10    # Scan standard
-nmap -sS -T4 10.10.10.10    # Scan rapide interne
+nmap -sS -T1 <target_ip>    # Scan furtif lent
+nmap -sS -T3 <target_ip>    # Scan standard
+nmap -sS -T4 <target_ip>    # Scan rapide interne
 ```
 
 #### Contrôles de Temporisation Manuels
 
 ```bash
-nmap -sS --scan-delay 200ms 10.10.10.10   # Délai entre les sondes
-nmap --min-rate 50 10.10.10.10             # Minimum 50 paquets/sec
-nmap --host-timeout 5m 10.10.10.10         # Abandonner après 5 min par hôte
+nmap -sS --scan-delay 200ms <target_ip>   # Délai entre les sondes
+nmap --min-rate 50 <target_ip>             # Minimum 50 paquets/sec
+nmap --host-timeout 5m <target_ip>         # Abandonner après 5 min par hôte
 ```
 
 ---
@@ -393,15 +393,15 @@ Sauvegardez toujours les résultats pour l'analyse, les rapports et l'import dan
 | `-oA` | Tous les formats | Sauvegarde les trois à la fois |
 
 ```bash
-nmap -sS -oN scan.txt 10.10.10.10       # Texte
-nmap -sS -oX scan.xml 10.10.10.10       # XML
-nmap -sS -oA scan_results 10.10.10.10   # Tous les formats
+nmap -sS -oN scan.txt <target_ip>       # Texte
+nmap -sS -oX scan.xml <target_ip>       # XML
+nmap -sS -oA scan_results <target_ip>   # Tous les formats
 ```
 
 #### Importer le XML dans Metasploit
 
 ```bash
-nmap -sS -sV -oX scan.xml 10.10.10.10
+nmap -sS -sV -oX scan.xml <target_ip>
 msfconsole
 msf6 > db_import scan.xml
 msf6 > hosts
@@ -414,7 +414,7 @@ msf6 > services
 
 ```bash
 # Fragmentation + leurres + port source + sans DNS + temporisation lente + sortie XML
-nmap -sS -Pn -f -D RND:5 -g 53 -n -T2 --data-length 15 -oX evasion_scan.xml 10.10.10.10
+nmap -sS -Pn -f -D RND:5 -g 53 -n -T2 --data-length 15 -oX evasion_scan.xml <target_ip>
 ```
 
 | Flag | Utilité |
