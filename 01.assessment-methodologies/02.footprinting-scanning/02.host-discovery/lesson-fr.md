@@ -30,7 +30,7 @@ Un **ping sweep** envoie des paquets ICMP echo request (type 8) à plusieurs hô
 
 Exemple:
 ```bash
-nmap -sn -PE 192.168.1.0/24
+nmap -sn -PE <target_network>/24
 ```
 
 ---
@@ -52,7 +52,7 @@ nmap -sn -PE 192.168.1.0/24
 
 Exemple:
 ```bash
-nmap -sn -PR 192.168.1.0/24
+nmap -sn -PR <target_network>/24
 ```
 
 ---
@@ -77,7 +77,7 @@ nmap -sn -PR 192.168.1.0/24
 
 Exemple:
 ```bash
-nmap -sn -PS80,443 192.168.1.0/24
+nmap -sn -PS80,443 <target_network>/24
 ```
 
 Cette technique s'appelle **half-open** car nous ne complétons jamais le handshake TCP à 3 voies.
@@ -105,7 +105,7 @@ Cette technique s'appelle **half-open** car nous ne complétons jamais le handsh
 
 Exemple:
 ```bash
-nmap -sn -PU53,161,40125 192.168.1.0/24
+nmap -sn -PU53,161,40125 <target_network>/24
 ```
 
 ---
@@ -127,7 +127,7 @@ nmap -sn -PU53,161,40125 192.168.1.0/24
 
 Exemple:
 ```bash
-nmap -sn -PA80,443 192.168.1.0/24
+nmap -sn -PA80,443 <target_network>/24
 ```
 
 ---
@@ -158,7 +158,7 @@ Si vous ne spécifiez aucun type de ping, Nmap utilise une **combinaison par dé
 
 Exemple de host discovery seulement (sans scan de ports):
 ```bash
-nmap -sn 192.168.1.0/24
+nmap -sn <target_network>/24
 ```
 
 L'option `-sn` dit à Nmap: **seulement faire host discovery, pas de scan de ports**.
