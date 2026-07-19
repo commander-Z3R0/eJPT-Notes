@@ -22,17 +22,17 @@ Los scripts de NSE se almacenan en `/usr/share/nmap/scripts/` en la mayoría de 
 El flag `-sC` ejecuta la **categoría predeterminada de scripts NSE**, que incluye scripts seguros y comúnmente útiles para enumeración básica:
 
 ```bash
-nmap -sS -sC 192.168.1.10
+nmap -sS -sC <target_ip>
 ```
 
 ### Scripts Específicos (`--script`)
 Puedes ejecutar scripts o categorías de scripts específicos por nombre:
 
 ```bash
-nmap -sS --script http-enum 192.168.1.10
-nmap -sS --script vuln 192.168.1.10
-nmap -sS --script ftp-anon,ftp-bounce 192.168.1.10
-nmap -sS --script smb-enum-shares,smb-enum-users 192.168.1.10
+nmap -sS --script http-enum <target_ip>
+nmap -sS --script vuln <target_ip>
+nmap -sS --script ftp-anon,ftp-bounce <target_ip>
+nmap -sS --script smb-enum-shares,smb-enum-users <target_ip>
 ```
 
 ### Categorías de Scripts
@@ -53,9 +53,9 @@ Los scripts NSE están organizados en categorías:
 
 Ejemplo:
 ```bash
-nmap -sS --script default 192.168.1.10
-nmap -sS --script discovery 192.168.1.10
-nmap -sS --script vuln 192.168.1.10
+nmap -sS --script default <target_ip>
+nmap -sS --script discovery <target_ip>
+nmap -sS --script vuln <target_ip>
 ```
 
 ---
@@ -64,35 +64,35 @@ nmap -sS --script vuln 192.168.1.10
 
 ### Enumeración FTP
 ```bash
-nmap -sS --script ftp-anon 192.168.1.10
-nmap -sS --script ftp-bounce,ftp-libopie 192.168.1.10
+nmap -sS --script ftp-anon <target_ip>
+nmap -sS --script ftp-bounce,ftp-libopie <target_ip>
 ```
 
 ### Enumeración SMB
 ```bash
-nmap -sS --script smb-enum-shares,smb-enum-users 192.168.1.10
-nmap -sS --script smb-security-mode,smb-os-discovery 192.168.1.10
+nmap -sS --script smb-enum-shares,smb-enum-users <target_ip>
+nmap -sS --script smb-security-mode,smb-os-discovery <target_ip>
 ```
 
 ### Enumeración SSH
 ```bash
-nmap -sS --script ssh2-enum-algos,ssh-hostkey 192.168.1.10
+nmap -sS --script ssh2-enum-algos,ssh-hostkey <target_ip>
 ```
 
 ### Enumeración SMTP
 ```bash
-nmap -sS --script smtp-enum-users,smtp-commands 192.168.1.10
+nmap -sS --script smtp-enum-users,smtp-commands <target_ip>
 ```
 
 ### Enumeración de Servidor Web
 ```bash
-nmap -sS --script http-enum,http-headers 192.168.1.10
-nmap -sS --script http-sql-injection,xss 192.168.1.10
+nmap -sS --script http-enum,http-headers <target_ip>
+nmap -sS --script http-sql-injection,xss <target_ip>
 ```
 
 ### Enumeración MySQL
 ```bash
-nmap -sS --script mysql-enum,mysql-info 192.168.1.10
+nmap -sS --script mysql-enum,mysql-info <target_ip>
 ```
 
 ---
@@ -108,7 +108,7 @@ Esta metodología muestra cómo ir desde **enumeración cruda de IP** hasta un *
 Comienza con un escaneo básico para descubrir puertos abiertos y servicios:
 
 ```bash
-nmap -sS -sV -O -p- -sC -oX initial_scan.xml 192.168.1.10
+nmap -sS -sV -O -p- -sC -oX initial_scan.xml <target_ip>
 ```
 
 Qué hace esto:
@@ -129,25 +129,25 @@ Basado en lo que encontraste, ejecuta scripts NSE dirigidos:
 
 ```bash
 # Chequeo de acceso anónimo FTP
-nmap -sS --script ftp-anon -p 21 192.168.1.10
+nmap -sS --script ftp-anon -p 21 <target_ip>
 
 # Shares y usuarios SMB
-nmap -sS --script smb-enum-shares,smb-enum-users -p 139,445 192.168.1.10
+nmap -sS --script smb-enum-shares,smb-enum-users -p 139,445 <target_ip>
 
 # Directorios web y vulnerabilidades
-nmap -sS --script http-enum,http-vuln* -p 80,443 192.168.1.10
+nmap -sS --script http-enum,http-vuln* -p 80,443 <target_ip>
 
 # Enumeración de usuarios SMTP
-nmap -sS --script smtp-enum-users -p 25 192.168.1.10
+nmap -sS --script smtp-enum-users -p 25 <target_ip>
 
 # Algoritmos y hostkey SSH
-nmap -sS --script ssh2-enum-algos -p 22 192.168.1.10
+nmap -sS --script ssh2-enum-algos -p 22 <target_ip>
 ```
 
 Guarda cada resultado para referencia posterior:
 ```bash
-nmap -sS --script ftp-anon -p 21 -oN ftp_enum.txt 192.168.1.10
-nmap -sS --script smb-enum-shares -p 445 -oN smb_enum.txt 192.168.1.10
+nmap -sS --script ftp-anon -p 21 -oN ftp_enum.txt <target_ip>
+nmap -sS --script smb-enum-shares -p 445 -oN smb_enum.txt <target_ip>
 ```
 
 ---
@@ -157,8 +157,8 @@ nmap -sS --script smb-enum-shares -p 445 -oN smb_enum.txt 192.168.1.10
 Ya usaste `-oX` en el Paso 1, pero también puedes exportar escaneos adicionales:
 
 ```bash
-nmap -sS --script smb-enum-shares -oX smb_scan.xml 192.168.1.10
-nmap -sS --script http-enum -oX web_scan.xml 192.168.1.10
+nmap -sS --script smb-enum-shares -oX smb_scan.xml <target_ip>
+nmap -sS --script http-enum -oX web_scan.xml <target_ip>
 ```
 
 El formato XML es crítico porque **Metasploit puede importarlo** y almacenar todos los hosts, puertos y datos de servicios en su base de datos.
@@ -174,7 +174,7 @@ msfconsole
 
 Crea un nuevo workspace para este objetivo (para mantener todo organizado):
 ```bash
-workspace -a enumeration_target_192.168.1.10
+workspace -a enumeration_target_<target_ip>
 ```
 
 Opciones de workspace:
@@ -224,8 +224,8 @@ services -p 445 -p 3389
 También puedes usar `db_nmap` para ejecutar Nmap directamente desde Metasploit con almacenamiento automático en base de datos:
 
 ```bash
-db_nmap -sS -sV -oX db_scan.xml 192.168.1.10
-db_nmap -sS -Pn -p 80,443 192.168.1.10
+db_nmap -sS -sV -oX db_scan.xml <target_ip>
+db_nmap -sS -Pn -p 80,443 <target_ip>
 ```
 
 El flag `-Pn` es útil cuando el objetivo bloquea ping pero aún tiene puertos abiertos.
@@ -254,32 +254,32 @@ search auxiliary
 
 # Chequeo de login anónimo FTP
 use auxiliary/scanner/ftp/anonymous
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 # Enumeración SMB
 use auxiliary/scanner/smb/smb_enumshares
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 # Enumeración de usuarios SMB
 use auxiliary/scanner/smb/smb_enumusers
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 # Chequeo de versión SSH
 use auxiliary/scanner/ssh/ssh_version
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 # Enumeración de usuarios SMTP
 use auxiliary/scanner/smtp/smtp_enum
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 # Enumeración de directorios HTTP
 use auxiliary/scanner/http/dir_scanner
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 set THREADS 10
 run
 ```
