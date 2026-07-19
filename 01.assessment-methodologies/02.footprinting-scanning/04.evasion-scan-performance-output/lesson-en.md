@@ -28,8 +28,8 @@ The `-f` flag tells Nmap to fragment packets into **tiny pieces**. Nmap splits t
 
 Example:
 ```bash
-nmap -sS -f 192.168.1.10
-nmap -sS -ff 192.168.1.10
+nmap -sS -f <target_ip>
+nmap -sS -ff <target_ip>
 ```
 
 ### `--mtu`
@@ -37,7 +37,7 @@ The `--mtu` option lets you choose the fragment size manually. The value must be
 
 Example:
 ```bash
-nmap -sS --mtu 24 192.168.1.10
+nmap -sS --mtu 24 <target_ip>
 ```
 
 ### `--data-length`
@@ -45,7 +45,7 @@ The `--data-length` option appends random bytes to sent packets. This makes prob
 
 Example:
 ```bash
-nmap -sS --data-length 16 192.168.1.10
+nmap -sS --data-length 16 <target_ip>
 ```
 
 ### `-D`
@@ -53,8 +53,8 @@ The `-D` option uses **decoys**. Nmap makes the target see several source IPs sc
 
 Example:
 ```bash
-nmap -sS -D 10.10.10.10,10.10.10.11,ME 192.168.1.10
-nmap -sS -D RND:5 192.168.1.10
+nmap -sS -D 10.10.10.10,10.10.10.11,ME <target_ip>
+nmap -sS -D RND:5 <target_ip>
 ```
 
 ### When to use these options
@@ -79,8 +79,8 @@ The `-T` timing template controls how aggressive Nmap should be. Nmap defines si
 
 Examples:
 ```bash
-nmap -T3 192.168.1.10
-nmap -T4 192.168.1.10
+nmap -T3 <target_ip>
+nmap -T4 <target_ip>
 ```
 
 - `-T0` and `-T1` are slower and are often used when stealth is more important than speed.
@@ -92,7 +92,7 @@ nmap -T4 192.168.1.10
 
 Example:
 ```bash
-nmap --host-timeout 2m 192.168.1.10
+nmap --host-timeout 2m <target_ip>
 ```
 
 ### `--min-rate`
@@ -100,7 +100,7 @@ nmap --host-timeout 2m 192.168.1.10
 
 Example:
 ```bash
-nmap --min-rate 100 192.168.1.10
+nmap --min-rate 100 <target_ip>
 ```
 
 ### `--scan-delay`
@@ -108,7 +108,7 @@ nmap --min-rate 100 192.168.1.10
 
 Example:
 ```bash
-nmap --scan-delay 200ms 192.168.1.10
+nmap --scan-delay 200ms <target_ip>
 ```
 
 ### Practical view of performance
@@ -125,7 +125,7 @@ Nmap can save results in different formats so you can review, filter, or import 
 
 Example:
 ```bash
-nmap -sS -oN scan.txt 192.168.1.10
+nmap -sS -oN scan.txt <target_ip>
 ```
 
 ### `-oX`
@@ -133,7 +133,7 @@ nmap -sS -oN scan.txt 192.168.1.10
 
 Example:
 ```bash
-nmap -sS -oX scan.xml 192.168.1.10
+nmap -sS -oX scan.xml <target_ip>
 ```
 
 ### `-oG`
@@ -141,7 +141,7 @@ nmap -sS -oX scan.xml 192.168.1.10
 
 Example:
 ```bash
-nmap -sS -oG scan.gnmap 192.168.1.10
+nmap -sS -oG scan.gnmap <target_ip>
 ```
 
 ### `-oA`
@@ -149,7 +149,7 @@ nmap -sS -oG scan.gnmap 192.168.1.10
 
 Example:
 ```bash
-nmap -sS -oA scan_results 192.168.1.10
+nmap -sS -oA scan_results <target_ip>
 ```
 
 ### Why XML matters
@@ -163,7 +163,7 @@ In footprinting, you can use **Metasploit’s database features** to import Nmap
 
 Typical workflow:
 ```bash
-nmap -sS -sV -oX scan.xml 192.168.1.10
+nmap -sS -sV -oX scan.xml <target_ip>
 msfconsole
 db_import scan.xml
 hosts
@@ -186,9 +186,9 @@ This is useful because it centralizes reconnaissance results and makes later ana
 A simple footprinting workflow could look like this:
 
 ```bash
-nmap -sS -T3 -oN scan.txt 192.168.1.10
-nmap -sS -T4 --scan-delay 100ms -oX scan.xml 192.168.1.10
-nmap -sS -f -D RND:5 -oG scan.gnmap 192.168.1.10
+nmap -sS -T3 -oN scan.txt <target_ip>
+nmap -sS -T4 --scan-delay 100ms -oX scan.xml <target_ip>
+nmap -sS -f -D RND:5 -oG scan.gnmap <target_ip>
 ```
 
 Use fast settings when the network is stable, and slower or more careful settings when you want to reduce noise or test defensive controls .
