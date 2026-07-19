@@ -269,10 +269,10 @@ Aquí tienes un flujo completo desde escaneo hasta enumeración de servicios par
 msfconsole
 
 # 2. Crear workspace
-workspace -a service_enum_192.168.1.10
+workspace -a service_enum_<target_ip>
 
 # 3. Escaneo inicial con almacenamiento en base de datos
-db_nmap -sS -sV -p- -oX full_scan.xml 192.168.1.10
+db_nmap -sS -sV -p- -oX full_scan.xml <target_ip>
 
 # 4. Importar resultados de escaneo
 db_import full_scan.xml
@@ -282,35 +282,35 @@ services
 
 # 6. Enumeración FTP
 use auxiliary/scanner/ftp/anonymous
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 # 7. Enumeración SMB
 use auxiliary/scanner/smb/smb_enumshares
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 use auxiliary/scanner/smb/smb_enumusers
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 run
 
 # 8. Enumeración Web
 use auxiliary/scanner/http/dir_scanner
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 set RPORT 80
 set THREADS 10
 run
 
 # 9. Enumeración MySQL
 use auxiliary/scanner/mysql/mysql_login
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 set USER_FILE /usr/share/metasploit-framework/data/wordlists/default_users.txt
 set PASS_FILE /usr/share/metasploit-framework/data/wordlists/default_passwords.txt
 run
 
 # 10. Enumeración SSH
 use auxiliary/scanner/ssh/ssh_login
-set RHOSTS 192.168.1.10
+set RHOSTS <target_ip>
 set USER_FILE /usr/share/metasploit-framework/data/wordlists/default_users.txt
 set PASS_FILE /usr/share/metasploit-framework/data/wordlists/default_passwords.txt
 set THREADS 10
