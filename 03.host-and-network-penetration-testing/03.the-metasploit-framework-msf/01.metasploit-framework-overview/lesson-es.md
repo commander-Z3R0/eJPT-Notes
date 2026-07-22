@@ -1,6 +1,6 @@
 # The Metasploit Framework
 
-## Resumen
+## Overview
 
 El **Metasploit Framework (MSF)** es un framework de pruebas de penetración y explotación de código abierto usado por pentesters e investigadores de seguridad. Proporciona la estructura necesaria para automatizar muchas fases del ciclo de una prueba de penetración, desde el reconocimiento hasta la postexplotación.
 
